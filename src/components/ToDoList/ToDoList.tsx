@@ -1,6 +1,10 @@
-import React from "react";
+import { useAppSelector } from '../../hooks';
+import ToDoListItem from '../ToDoListItem/ToDoListItem';
 
-const ToDoList = () => {
+const ToDoList = (): JSX.Element => {
+  const { todoList } = useAppSelector(({ todo }) => todo);
+  console.log(todoList);
+
   return (
     <section className="main">
       <input id="toggle-all" className="toggle-all" type="checkbox" />
@@ -8,7 +12,20 @@ const ToDoList = () => {
       <label htmlFor="toggle-all">Mark all as complete</label>
 
       <ul className="todo-list">
-        <li className="completed">
+        {todoList.map((item) => {
+          return (
+            <ToDoListItem task={item} />
+          );
+        })}
+      </ul>
+    </section>
+  );
+};
+
+export default ToDoList;
+
+/*
+<li className="completed">
           <div className="view">
             <input className="toggle" type="checkbox" defaultChecked />
             <label>Taste JavaScript</label>
@@ -25,9 +42,4 @@ const ToDoList = () => {
           </div>
           <input className="edit" defaultValue="Rule the web" />
         </li>
-      </ul>
-    </section>
-  );
-};
-
-export default ToDoList;
+        */
