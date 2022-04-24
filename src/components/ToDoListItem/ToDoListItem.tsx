@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { Task } from '../../types/state';
-import { setNewTaskCheckFlag } from '../../store/reducers/todo-slice';
+import { deleteTask, setNewTaskCheckFlag } from '../../store/reducers/todo-slice';
 
 type ToDoListItemProps = {
   task: Task;
@@ -9,8 +9,13 @@ type ToDoListItemProps = {
 
 const ToDoListItem = ({ task }: ToDoListItemProps): JSX.Element => {
   const { id, text, checkFlag } = task;
+  console.log(checkFlag);
   const [checkboxState, setCheckboxState] = useState(checkFlag);
   const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    dispatch(deleteTask(id));
+  }
 
   useEffect(() => {
     dispatch(setNewTaskCheckFlag(id));
@@ -26,9 +31,9 @@ const ToDoListItem = ({ task }: ToDoListItemProps): JSX.Element => {
           onChange={() => setCheckboxState(!checkboxState)}
         />
         <label>{text}</label>
-        <button className="destroy"></button>
+        <button className="destroy" onClick={handleClick}></button>
       </div>
-      <input className="edit" value={text} />
+      <input className="edit" defaultValue={text} />
     </li>
   );
 };

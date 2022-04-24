@@ -13,9 +13,10 @@ const Header = (): JSX.Element => {
   };
 
   const handleInputValue = (e: KeyboardEvent<HTMLInputElement>) => {
+    let uuid = uuidv4();
     if(e.key === 'Enter')
       onSetInputTask({
-        id: uuidv4(),
+        id: uuid,
         text: todoText,
         checkFlag: false,
       })

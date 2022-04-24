@@ -3,7 +3,6 @@ import ToDoListItem from '../ToDoListItem/ToDoListItem';
 
 const ToDoList = (): JSX.Element => {
   const { todoList } = useAppSelector(({ todo }) => todo);
-  console.log(todoList);
 
   return (
     <section className="main">
@@ -14,7 +13,7 @@ const ToDoList = (): JSX.Element => {
       <ul className="todo-list">
         {todoList.map((item) => {
           return (
-            <ToDoListItem task={item} />
+              <ToDoListItem task={item} />
           );
         })}
       </ul>

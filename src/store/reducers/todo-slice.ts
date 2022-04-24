@@ -14,10 +14,14 @@ export const todoSlice = createSlice({
         },
         setNewTaskCheckFlag: (state, action) => {
             state.todoList = state.todoList.map((item) => item.id === action.payload ? {...item, checkFlag: !item.checkFlag} : item);
+            console.log("opa@");
+        },
+        deleteTask: (state, action) => {
+            state.todoList = state.todoList.filter((item) => item.id !== action.payload);
         }
     }
 });
 
-export const { setNewTask, setNewTaskCheckFlag } = todoSlice.actions;
+export const { setNewTask, setNewTaskCheckFlag, deleteTask } = todoSlice.actions;
 
 export default todoSlice.reducer;
