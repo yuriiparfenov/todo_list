@@ -1,13 +1,12 @@
-import React from 'react';
 import Header from './components/Header/Header';
-import ToDoList from './components/ToDoList/ToDoList';
 import Footer from './components/Footer/Footer';
+import Main from './components/Main/Main';
 
 function App() {
   return (
     <section className="todoapp">
       <Header />
-      <ToDoList />
+      <Main />
       <Footer />
     </section>
   );

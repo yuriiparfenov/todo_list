@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { Task } from '../../types/state';
 import { deleteTask, setNewTaskCheckFlag } from '../../store/reducers/todo-slice';
@@ -9,26 +9,24 @@ type ToDoListItemProps = {
 
 const ToDoListItem = ({ task }: ToDoListItemProps): JSX.Element => {
   const { id, text, checkFlag } = task;
-  console.log(checkFlag);
-  const [checkboxState, setCheckboxState] = useState(checkFlag);
   const dispatch = useAppDispatch();
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     dispatch(deleteTask(id));
-  }
+  }, [dispatch, id]);
 
-  useEffect(() => {
+  const handleChangeStatus = useCallback(() => {
     dispatch(setNewTaskCheckFlag(id));
-  }, [checkboxState, dispatch, id]);
+  }, [id, dispatch]);
 
   return (
-    <li className={!checkboxState ? '' : 'completed'} key={id}>
+    <li className={!checkFlag ? '' : 'completed'} key={`${id} - 100`}>
       <div className="view">
         <input
           className="toggle"
           type="checkbox"
-          checked={checkboxState}
-          onChange={() => setCheckboxState(!checkboxState)}
+          checked={checkFlag}
+          onChange={handleChangeStatus}
         />
         <label>{text}</label>
         <button className="destroy" onClick={handleClick}></button>
