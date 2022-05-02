@@ -8,6 +8,9 @@ export type Task = {
 
 export type initialStateType = {
     todoList: Task[];
+    todoCompletedList: Task[];
+    todoActiveList: Task[];
+    itemLeft: number;
 };
 
 export type State = ReturnType<typeof store.getState>;
