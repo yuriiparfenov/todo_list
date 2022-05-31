@@ -6,7 +6,7 @@ import ToDoList from '../ToDoList/ToDoList';
 const Main = (): JSX.Element => {
   const { todoList, todoActiveList, todoCompletedList } = useAppSelector(({ todo }) => todo);
   const dispatch = useAppDispatch();
-
+  
   const handleClick = () => {
     dispatch(setAllTaskCompleted());
   }
@@ -14,9 +14,7 @@ const Main = (): JSX.Element => {
   return (
     <section className="main">
       <input id="toggle-all" className="toggle-all" type="checkbox" />
-
       <label htmlFor="toggle-all" onClick={handleClick}>Mark all as complete</label>
-
       <Routes>
         <Route index element={<ToDoList taskList={todoList} />} />
         <Route path='/completed' element={<ToDoList taskList={todoCompletedList} />} />

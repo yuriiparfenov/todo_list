@@ -43,5 +43,4 @@ export const todoSlice = createSlice({
 });
 
 export const { setNewTask, setNewTaskCheckFlag, deleteTask, clearCompletedTaskList, setAllTaskCompleted } = todoSlice.actions;
-
 export default todoSlice.reducer;
